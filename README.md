@@ -1,4 +1,4 @@
-# Dielectric Spectroscopy
+
 
 Data and tools from my master thesis on open-ended coaxial probe (OECP) dielectric
 spectroscopy: measuring the complex permittivity of liquids from S11 reflection
@@ -52,3 +52,6 @@ Frequency  S11_Real  S11_Imag  Perm_Real  Perm_Imag  Conductivity  LossTan  R  X
 
 Permittivity convention: `eps* = eps' - j*eps''` with `eps''` stored positive.
 See `software/python/README.md` for a reader and conversion reference.
+
+## Starting Point
+Opening the vi called RDV-GUI-SinglePlot would be a good point inside relfection data viewer class, GUI and Testers
