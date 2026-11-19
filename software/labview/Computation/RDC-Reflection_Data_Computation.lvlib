@@ -80,10 +80,5 @@
 		<Item Name="RDC-water-param.ctl" Type="VI" URL="../RDC-water-param.ctl"/>
 	</Item>
 	<Item Name="Viewer and Tests" Type="Folder">
-		<Item Name="RDC-compare_dembedd.vi" Type="VI" URL="../RDC-compare_dembedd.vi"/>
-		<Item Name="RDC-test-Check_Error.vi" Type="VI" URL="../RDC-test-Check_Error.vi"/>
-		<Item Name="RFC-test-check_perm.vi" Type="VI" URL="../RFC-test-check_perm.vi"/>
-		<Item Name="RFC-test-get_perm.vi" Type="VI" URL="../RFC-test-get_perm.vi"/>
-		<Item Name="RFC-tester.vi" Type="VI" URL="../RFC-tester.vi"/>
 	</Item>
 </Library>
