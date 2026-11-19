@@ -14,7 +14,6 @@
 		<Item Name="RDC-Array-Reflection_Correction.vi" Type="VI" URL="../RDC-Array-Reflection_Correction.vi"/>
 	</Item>
 	<Item Name="General" Type="Folder">
-		<Item Name="RDC-calc-Loss_tangent.vi" Type="VI" URL="../RDC-calc-Loss_tangent.vi"/>
 		<Item Name="RDC-error_check.vi" Type="VI" URL="../RDC-error_check.vi"/>
 	</Item>
 	<Item Name="Linear Correction" Type="Folder">
@@ -45,7 +44,6 @@
 		<Item Name="RDC-Lin-get_Dak35_Probe_info.vi" Type="VI" URL="../RDC-Lin-get_Dak35_Probe_info.vi"/>
 		<Item Name="RDC-Probe-Calculate_Constants.vi" Type="VI" URL="../RDC-Probe-Calculate_Constants.vi"/>
 		<Item Name="RDC-Probe-Calculate_Dimensions.vi" Type="VI" URL="../RDC-Probe-Calculate_Dimensions.vi"/>
-		<Item Name="RDC-Probe-Calculate_Many_Dimensions.vi" Type="VI" URL="../RDC-Probe-Calculate_Many_Dimensions.vi"/>
 	</Item>
 	<Item Name="Tools" Type="Folder">
 		<Property Name="NI.SortType" Type="Int">3</Property>
@@ -83,7 +81,6 @@
 	</Item>
 	<Item Name="Viewer and Tests" Type="Folder">
 		<Item Name="RDC-compare_dembedd.vi" Type="VI" URL="../RDC-compare_dembedd.vi"/>
-		<Item Name="RDC-test-add_perm.vi" Type="VI" URL="../RDC-test-add_perm.vi"/>
 		<Item Name="RDC-test-Check_Error.vi" Type="VI" URL="../RDC-test-Check_Error.vi"/>
 		<Item Name="RFC-test-check_perm.vi" Type="VI" URL="../RFC-test-check_perm.vi"/>
 		<Item Name="RFC-test-get_perm.vi" Type="VI" URL="../RFC-test-get_perm.vi"/>

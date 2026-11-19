@@ -21,7 +21,6 @@
 		<Item Name="subVI" Type="Folder">
 			<Item Name="RFH-average-libreVNA.vi" Type="VI" URL="../RFH-average-libreVNA.vi"/>
 			<Item Name="RFH-convert-avg-libreVNA.vi" Type="VI" URL="../RFH-convert-avg-libreVNA.vi"/>
-			<Item Name="RFH-convert-standard.vi" Type="VI" URL="../RFH-convert-standard.vi"/>
 		</Item>
 		<Item Name="RFH-convert-general-folder.vi" Type="VI" URL="../RFH-convert-general-folder.vi"/>
 		<Item Name="RFH-convert-libreVNA.vi" Type="VI" URL="../RFH-convert-libreVNA.vi"/>
@@ -40,7 +39,6 @@
 		<Item Name="RFH-read-general.vi" Type="VI" URL="../RFH-read-general.vi"/>
 		<Item Name="RFH-read-libreVNA.vi" Type="VI" URL="../RFH-read-libreVNA.vi"/>
 		<Item Name="RFH-read-R140.vi" Type="VI" URL="../RFH-read-R140.vi"/>
-		<Item Name="RFH-read-s1p.vi" Type="VI" URL="../RFH-read-s1p.vi"/>
 		<Item Name="RFH-read_folder-common_format.vi" Type="VI" URL="../RFH-read_folder-common_format.vi"/>
 	</Item>
 	<Item Name="Test" Type="Folder">
@@ -74,7 +72,6 @@
 		<Item Name="RFH-View-sort_by_name.vi" Type="VI" URL="../RFH-View-sort_by_name.vi"/>
 	</Item>
 	<Item Name="write" Type="Folder">
-		<Item Name="RFH-save-calib_format.vi" Type="VI" URL="../RFH-save-calib_format.vi"/>
 		<Item Name="RFH-save-common_format.vi" Type="VI" URL="../RFH-save-common_format.vi"/>
 		<Item Name="RFH-save-water_calib.vi" Type="VI" URL="../RFH-save-water_calib.vi"/>
 	</Item>
