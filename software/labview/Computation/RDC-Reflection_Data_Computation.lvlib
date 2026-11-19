@@ -12,15 +12,15 @@
 			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
 			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		</Item>
-		<Item Name="RDC-Array-calc_propogation_const-formula.vi" Type="VI" URL="../RDC-Array-calc_propogation_const-formula.vi">
+		<Item Name="RDC-Array-calc_propagation_const-formula.vi" Type="VI" URL="../RDC-Array-calc_propagation_const-formula.vi">
 			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
 			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		</Item>
-		<Item Name="RDC-Array-calc_propogation_const-measurement.vi" Type="VI" URL="../RDC-Array-calc_propogation_const-measurement.vi">
+		<Item Name="RDC-Array-calc_propagation_const-measurement.vi" Type="VI" URL="../RDC-Array-calc_propagation_const-measurement.vi">
 			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
 			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		</Item>
-		<Item Name="RDC-Array-calc_propogation_const.vi" Type="VI" URL="../RDC-Array-calc_propogation_const.vi"/>
+		<Item Name="RDC-Array-calc_propagation_const.vi" Type="VI" URL="../RDC-Array-calc_propagation_const.vi"/>
 		<Item Name="RDC-Array-Reflection_Correction.vi" Type="VI" URL="../RDC-Array-Reflection_Correction.vi"/>
 	</Item>
 	<Item Name="General" Type="Folder">
