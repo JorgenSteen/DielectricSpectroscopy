@@ -36,13 +36,13 @@
 			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
 			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		</Item>
-		<Item Name="RDC-Lin-Find_eff_lenght.vi" Type="VI" URL="../RDC-Lin-Find_eff_lenght.vi"/>
+		<Item Name="RDC-Lin-Find_eff_length.vi" Type="VI" URL="../RDC-Lin-Find_eff_length.vi"/>
 		<Item Name="RDC-Lin-Find_tau.vi" Type="VI" URL="../RDC-Lin-Find_tau.vi"/>
 		<Item Name="RDC-Lin-Reflection_Correction.vi" Type="VI" URL="../RDC-Lin-Reflection_Correction.vi"/>
 	</Item>
 	<Item Name="Permittivity" Type="Folder">
 		<Item Name="RDC-add_ideal_perm.vi" Type="VI" URL="../RDC-add_ideal_perm.vi"/>
-		<Item Name="RDC-permittivity-Advance.vi" Type="VI" URL="../RDC-permittivity-Advance.vi">
+		<Item Name="RDC-permittivity-Advanced.vi" Type="VI" URL="../RDC-permittivity-Advanced.vi">
 			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
 			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		</Item>
@@ -120,7 +120,7 @@
 			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
 			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		</Item>
-		<Item Name="RDC-calculate_lenght.vi" Type="VI" URL="../RDC-calculate_lenght.vi"/>
+		<Item Name="RDC-calculate_length.vi" Type="VI" URL="../RDC-calculate_length.vi"/>
 		<Item Name="RDC-filter_box.vi" Type="VI" URL="../RDC-filter_box.vi"/>
 	</Item>
 	<Item Name="TypeDef" Type="Folder">
