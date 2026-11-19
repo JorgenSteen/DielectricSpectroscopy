@@ -22,9 +22,9 @@
 		<Item Name="Tests" Type="Folder">
 			<Item Name="RDC-compare_deembed.vi" Type="VI" URL="../Computation/RDC-compare_deembed.vi"/>
 			<Item Name="RDC-test-Check_Error.vi" Type="VI" URL="../Computation/RDC-test-Check_Error.vi"/>
-			<Item Name="RFC-test-check_perm.vi" Type="VI" URL="../Computation/RFC-test-check_perm.vi"/>
-			<Item Name="RFC-test-get_perm.vi" Type="VI" URL="../Computation/RFC-test-get_perm.vi"/>
-			<Item Name="RFC-tester.vi" Type="VI" URL="../Computation/RFC-tester.vi"/>
+			<Item Name="RDC-test-check_perm.vi" Type="VI" URL="../Computation/RDC-test-check_perm.vi"/>
+			<Item Name="RDC-test-get_perm.vi" Type="VI" URL="../Computation/RDC-test-get_perm.vi"/>
+			<Item Name="RDC-tester.vi" Type="VI" URL="../Computation/RDC-tester.vi"/>
 			<Item Name="RFH-test-excel_converter.vi" Type="VI" URL="../Reflector/RFH-test-excel_converter.vi"/>
 			<Item Name="RFH-test-write_readback.vi" Type="VI" URL="../Reflector/RFH-test-write_readback.vi"/>
 			<Item Name="RFH-test.vi" Type="VI" URL="../Reflector/RFH-test.vi"/>
