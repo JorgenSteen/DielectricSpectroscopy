@@ -20,7 +20,7 @@
 			<Item Name="RDV-GUI-SinglePlot.vi" Type="VI" URL="../Data Viewer/RDV-GUI-SinglePlot.vi"/>
 		</Item>
 		<Item Name="Tests" Type="Folder">
-			<Item Name="RDC-compare_dembedd.vi" Type="VI" URL="../Computation/RDC-compare_dembedd.vi"/>
+			<Item Name="RDC-compare_deembed.vi" Type="VI" URL="../Computation/RDC-compare_deembed.vi"/>
 			<Item Name="RDC-test-Check_Error.vi" Type="VI" URL="../Computation/RDC-test-Check_Error.vi"/>
 			<Item Name="RFC-test-check_perm.vi" Type="VI" URL="../Computation/RFC-test-check_perm.vi"/>
 			<Item Name="RFC-test-get_perm.vi" Type="VI" URL="../Computation/RFC-test-get_perm.vi"/>
