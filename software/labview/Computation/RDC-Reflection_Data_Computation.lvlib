@@ -70,12 +70,8 @@
 		<Item Name="RDC-get_specific_data_points.vi" Type="VI" URL="../RDC-get_specific_data_points.vi"/>
 		<Item Name="RDC-tools-AVG.vim" Type="VI" URL="../RDC-tools-AVG.vim"/>
 		<Item Name="RDC-get_dielectric.vi" Type="VI" URL="../RDC-get_dielectric.vi"/>
-		<Item Name="RDC-filter_box.vi" Type="VI" URL="../RDC-filter_box.vi"/>
-	</Item>
-	<Item Name="trash" Type="Folder">
-		<Item Name="RDC-asdas.vi" Type="VI" URL="../RDC-asdas.vi"/>
 		<Item Name="RDC-calculate_lenght.vi" Type="VI" URL="../RDC-calculate_lenght.vi"/>
-		<Item Name="RDC-Playing_around-Find_Capacitance.vi" Type="VI" URL="../RDC-Playing_around-Find_Capacitance.vi"/>
+		<Item Name="RDC-filter_box.vi" Type="VI" URL="../RDC-filter_box.vi"/>
 	</Item>
 	<Item Name="TypeDef" Type="Folder">
 		<Item Name="RDC-dielectric_types.ctl" Type="VI" URL="../RDC-dielectric_types.ctl"/>
@@ -91,8 +87,6 @@
 		<Item Name="RDC-test-Check_Error.vi" Type="VI" URL="../RDC-test-Check_Error.vi"/>
 		<Item Name="RFC-test-check_perm.vi" Type="VI" URL="../RFC-test-check_perm.vi"/>
 		<Item Name="RFC-test-get_perm.vi" Type="VI" URL="../RFC-test-get_perm.vi"/>
-		<Item Name="RFC-test-get_perm2.vi" Type="VI" URL="../RFC-test-get_perm2.vi"/>
-		<Item Name="RFC-test-get_perm3.vi" Type="VI" URL="../RFC-test-get_perm3.vi"/>
 		<Item Name="RFC-tester.vi" Type="VI" URL="../RFC-tester.vi"/>
 	</Item>
 </Library>

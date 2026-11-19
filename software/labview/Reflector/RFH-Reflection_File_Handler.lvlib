@@ -35,14 +35,12 @@
 		<Item Name="RFH-verify-R140_conversion.vi" Type="VI" URL="../RFH-verify-R140_conversion.vi"/>
 		<Item Name="RFH-verify-water_calib_file.vi" Type="VI" URL="../RFH-verify-water_calib_file.vi"/>
 	</Item>
-	<Item Name="hmmm" Type="Folder">
-		<Item Name="RFH-read-s1p.vi" Type="VI" URL="../RFH-read-s1p.vi"/>
-	</Item>
 	<Item Name="read" Type="Folder">
 		<Item Name="RFH-read-common_format.vi" Type="VI" URL="../RFH-read-common_format.vi"/>
 		<Item Name="RFH-read-general.vi" Type="VI" URL="../RFH-read-general.vi"/>
 		<Item Name="RFH-read-libreVNA.vi" Type="VI" URL="../RFH-read-libreVNA.vi"/>
 		<Item Name="RFH-read-R140.vi" Type="VI" URL="../RFH-read-R140.vi"/>
+		<Item Name="RFH-read-s1p.vi" Type="VI" URL="../RFH-read-s1p.vi"/>
 		<Item Name="RFH-read_folder-common_format.vi" Type="VI" URL="../RFH-read_folder-common_format.vi"/>
 	</Item>
 	<Item Name="Test" Type="Folder">
