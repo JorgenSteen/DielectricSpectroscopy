@@ -12,8 +12,8 @@
 		<Item Name="RFH-add-data_to_sim.vi" Type="VI" URL="../RFH-add-data_to_sim.vi"/>
 		<Item Name="RFH-add-Impedance_data.vi" Type="VI" URL="../RFH-add-Impedance_data.vi"/>
 		<Item Name="RFH-add-Permittivity_data.vi" Type="VI" URL="../RFH-add-Permittivity_data.vi"/>
-		<Item Name="RFH-add-Permittivty_from_calc.vi" Type="VI" URL="../RFH-add-Permittivty_from_calc.vi"/>
-		<Item Name="RFH-add-Permittivty_from_calc2.vi" Type="VI" URL="../RFH-add-Permittivty_from_calc2.vi"/>
+		<Item Name="RFH-add-Permittivity_from_calc.vi" Type="VI" URL="../RFH-add-Permittivity_from_calc.vi"/>
+		<Item Name="RFH-add-Permittivity_from_calc2.vi" Type="VI" URL="../RFH-add-Permittivity_from_calc2.vi"/>
 	</Item>
 	<Item Name="convert" Type="Folder">
 		<Item Name="file" Type="Folder">
@@ -66,8 +66,7 @@
 		<Item Name="RFH-read-R140.vi" Type="VI" URL="../RFH-read-R140.vi"/>
 		<Item Name="RFH-read_folder-common_format.vi" Type="VI" URL="../RFH-read_folder-common_format.vi"/>
 	</Item>
-	<Item Name="Test" Type="Folder">
-	</Item>
+	<Item Name="Test" Type="Folder"/>
 	<Item Name="typedef" Type="Folder">
 		<Item Name="RFH-common_data_format.ctl" Type="VI" URL="../RFH-common_data_format.ctl"/>
 		<Item Name="RFH-common_data_format_element.ctl" Type="VI" URL="../RFH-common_data_format_element.ctl"/>
@@ -75,7 +74,7 @@
 		<Item Name="RFH-R140_data_format.ctl" Type="VI" URL="../RFH-R140_data_format.ctl"/>
 	</Item>
 	<Item Name="utility" Type="Folder">
-		<Item Name="RFH-allign_data.vi" Type="VI" URL="../RFH-allign_data.vi">
+		<Item Name="RFH-align_data.vi" Type="VI" URL="../RFH-align_data.vi">
 			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
 			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		</Item>
