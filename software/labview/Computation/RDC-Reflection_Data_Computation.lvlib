@@ -7,9 +7,18 @@
 
 </Property>
 	<Item Name="Array Correction" Type="Folder">
-		<Item Name="RDC-Array-calc_cf_c0_m1.vi" Type="VI" URL="../RDC-Array-calc_cf_c0_m1.vi"/>
-		<Item Name="RDC-Array-calc_propogation_const-formula.vi" Type="VI" URL="../RDC-Array-calc_propogation_const-formula.vi"/>
-		<Item Name="RDC-Array-calc_propogation_const-measurement.vi" Type="VI" URL="../RDC-Array-calc_propogation_const-measurement.vi"/>
+		<Item Name="RDC-Array-calc_cf_c0_m1.vi" Type="VI" URL="../RDC-Array-calc_cf_c0_m1.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RDC-Array-calc_propogation_const-formula.vi" Type="VI" URL="../RDC-Array-calc_propogation_const-formula.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RDC-Array-calc_propogation_const-measurement.vi" Type="VI" URL="../RDC-Array-calc_propogation_const-measurement.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RDC-Array-calc_propogation_const.vi" Type="VI" URL="../RDC-Array-calc_propogation_const.vi"/>
 		<Item Name="RDC-Array-Reflection_Correction.vi" Type="VI" URL="../RDC-Array-Reflection_Correction.vi"/>
 	</Item>
@@ -22,35 +31,65 @@
 		<Item Name="RDC-Lin-Calc_Impedance2.vi" Type="VI" URL="../RDC-Lin-Calc_Impedance2.vi"/>
 		<Item Name="RDC-Lin-Calc_Permittivity.vi" Type="VI" URL="../RDC-Lin-Calc_Permittivity.vi"/>
 		<Item Name="RDC-Lin-Compensate_Calc_Permittivity.vi" Type="VI" URL="../RDC-Lin-Compensate_Calc_Permittivity.vi"/>
-		<Item Name="RDC-Lin-Find_Capacitance.vi" Type="VI" URL="../RDC-Lin-Find_Capacitance.vi"/>
+		<Item Name="RDC-Lin-Find_Capacitance.vi" Type="VI" URL="../RDC-Lin-Find_Capacitance.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RDC-Lin-Find_eff_lenght.vi" Type="VI" URL="../RDC-Lin-Find_eff_lenght.vi"/>
 		<Item Name="RDC-Lin-Find_tau.vi" Type="VI" URL="../RDC-Lin-Find_tau.vi"/>
 		<Item Name="RDC-Lin-Reflection_Correction.vi" Type="VI" URL="../RDC-Lin-Reflection_Correction.vi"/>
 	</Item>
 	<Item Name="Permittivity" Type="Folder">
 		<Item Name="RDC-add_ideal_perm.vi" Type="VI" URL="../RDC-add_ideal_perm.vi"/>
-		<Item Name="RDC-permittivity-Advance.vi" Type="VI" URL="../RDC-permittivity-Advance.vi"/>
+		<Item Name="RDC-permittivity-Advance.vi" Type="VI" URL="../RDC-permittivity-Advance.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RDC-permittivity-Bilinear.vi" Type="VI" URL="../RDC-permittivity-Bilinear.vi"/>
-		<Item Name="RDC-permittivity-Bilinear_format.vi" Type="VI" URL="../RDC-permittivity-Bilinear_format.vi"/>
-		<Item Name="RDC-permittivity-Capacative.vi" Type="VI" URL="../RDC-permittivity-Capacative.vi"/>
+		<Item Name="RDC-permittivity-Bilinear_format.vi" Type="VI" URL="../RDC-permittivity-Bilinear_format.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RDC-permittivity-Capacative.vi" Type="VI" URL="../RDC-permittivity-Capacative.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RDC-permittivity-error_analysis.vi" Type="VI" URL="../RDC-permittivity-error_analysis.vi"/>
-		<Item Name="RDC-permittivity-handle_all.vi" Type="VI" URL="../RDC-permittivity-handle_all.vi"/>
+		<Item Name="RDC-permittivity-handle_all.vi" Type="VI" URL="../RDC-permittivity-handle_all.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RDC-permittivity-handle_matrix.vi" Type="VI" URL="../RDC-permittivity-handle_matrix.vi"/>
 		<Item Name="RDC-permittivity_collection.vi" Type="VI" URL="../RDC-permittivity_collection.vi"/>
 	</Item>
 	<Item Name="Probe" Type="Folder">
 		<Item Name="RDC-coax-calculate_from_meas.vi" Type="VI" URL="../RDC-coax-calculate_from_meas.vi"/>
-		<Item Name="RDC-Lin-Find_probe_char.vi" Type="VI" URL="../RDC-Lin-Find_probe_char.vi"/>
+		<Item Name="RDC-Lin-Find_probe_char.vi" Type="VI" URL="../RDC-Lin-Find_probe_char.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RDC-Lin-get_Dak35_Probe_info.vi" Type="VI" URL="../RDC-Lin-get_Dak35_Probe_info.vi"/>
-		<Item Name="RDC-Probe-Calculate_Constants.vi" Type="VI" URL="../RDC-Probe-Calculate_Constants.vi"/>
+		<Item Name="RDC-Probe-Calculate_Constants.vi" Type="VI" URL="../RDC-Probe-Calculate_Constants.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RDC-Probe-Calculate_Dimensions.vi" Type="VI" URL="../RDC-Probe-Calculate_Dimensions.vi"/>
 	</Item>
 	<Item Name="Tools" Type="Folder">
 		<Property Name="NI.SortType" Type="Int">3</Property>
 		<Item Name="water" Type="Folder">
-			<Item Name="RDC-water-generate_parameter.vi" Type="VI" URL="../RDC-water-generate_parameter.vi"/>
-			<Item Name="RDC-water-generate_perm.vi" Type="VI" URL="../RDC-water-generate_perm.vi"/>
-			<Item Name="RDC-water-read_parameter.vi" Type="VI" URL="../RDC-water-read_parameter.vi"/>
+			<Item Name="RDC-water-generate_parameter.vi" Type="VI" URL="../RDC-water-generate_parameter.vi">
+				<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+				<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+			</Item>
+			<Item Name="RDC-water-generate_perm.vi" Type="VI" URL="../RDC-water-generate_perm.vi">
+				<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+				<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+			</Item>
+			<Item Name="RDC-water-read_parameter.vi" Type="VI" URL="../RDC-water-read_parameter.vi">
+				<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+				<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+			</Item>
 			<Item Name="RDC-water-generate_all_perm.vi" Type="VI" URL="../RDC-water-generate_all_perm.vi"/>
 			<Item Name="RDC-water-save_files.vi" Type="VI" URL="../RDC-water-save_files.vi"/>
 			<Item Name="RDC-water-generate_perm_from_freq.vi" Type="VI" URL="../RDC-water-generate_perm_from_freq.vi"/>
@@ -58,16 +97,28 @@
 			<Item Name="RDC-water-generate_perm_param_to_share.vi" Type="VI" URL="../RDC-water-generate_perm_param_to_share.vi"/>
 		</Item>
 		<Item Name="saltwater" Type="Folder">
-			<Item Name="RDC-saltwater-generate_perm.vi" Type="VI" URL="../RDC-saltwater-generate_perm.vi"/>
+			<Item Name="RDC-saltwater-generate_perm.vi" Type="VI" URL="../RDC-saltwater-generate_perm.vi">
+				<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+				<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+			</Item>
 			<Item Name="RDC-saltwater-generate_perm_from_freq.vi" Type="VI" URL="../RDC-saltwater-generate_perm_from_freq.vi"/>
-			<Item Name="RDC-saltwater-generate_parameter.vi" Type="VI" URL="../RDC-saltwater-generate_parameter.vi"/>
-			<Item Name="RDC-saltwater-read_parameter.vi" Type="VI" URL="../RDC-saltwater-read_parameter.vi"/>
+			<Item Name="RDC-saltwater-generate_parameter.vi" Type="VI" URL="../RDC-saltwater-generate_parameter.vi">
+				<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+				<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+			</Item>
+			<Item Name="RDC-saltwater-read_parameter.vi" Type="VI" URL="../RDC-saltwater-read_parameter.vi">
+				<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+				<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+			</Item>
 			<Item Name="RDC-saltwater-generate_perm_param_to_share.vi" Type="VI" URL="../RDC-saltwater-generate_perm_param_to_share.vi"/>
 			<Item Name="RDC-saltwater-generate_all_perm.vi" Type="VI" URL="../RDC-saltwater-generate_all_perm.vi"/>
 		</Item>
 		<Item Name="RDC-get_specific_data_points.vi" Type="VI" URL="../RDC-get_specific_data_points.vi"/>
 		<Item Name="RDC-tools-AVG.vim" Type="VI" URL="../RDC-tools-AVG.vim"/>
-		<Item Name="RDC-get_dielectric.vi" Type="VI" URL="../RDC-get_dielectric.vi"/>
+		<Item Name="RDC-get_dielectric.vi" Type="VI" URL="../RDC-get_dielectric.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RDC-calculate_lenght.vi" Type="VI" URL="../RDC-calculate_lenght.vi"/>
 		<Item Name="RDC-filter_box.vi" Type="VI" URL="../RDC-filter_box.vi"/>
 	</Item>

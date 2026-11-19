@@ -20,24 +20,48 @@
 			<Item Name="RFH-convert-r140.vi" Type="VI" URL="../RFH-convert-r140.vi"/>
 		</Item>
 		<Item Name="subVI" Type="Folder">
-			<Item Name="RFH-average-libreVNA.vi" Type="VI" URL="../RFH-average-libreVNA.vi"/>
-			<Item Name="RFH-convert-avg-libreVNA.vi" Type="VI" URL="../RFH-convert-avg-libreVNA.vi"/>
+			<Item Name="RFH-average-libreVNA.vi" Type="VI" URL="../RFH-average-libreVNA.vi">
+				<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+				<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+			</Item>
+			<Item Name="RFH-convert-avg-libreVNA.vi" Type="VI" URL="../RFH-convert-avg-libreVNA.vi">
+				<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+				<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+			</Item>
 		</Item>
 		<Item Name="RFH-convert-general-folder.vi" Type="VI" URL="../RFH-convert-general-folder.vi"/>
-		<Item Name="RFH-convert-libreVNA.vi" Type="VI" URL="../RFH-convert-libreVNA.vi"/>
+		<Item Name="RFH-convert-libreVNA.vi" Type="VI" URL="../RFH-convert-libreVNA.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RFH-convert-r140andLibreVNA.vi" Type="VI" URL="../RFH-convert-r140andLibreVNA.vi"/>
 		<Item Name="RFH-convert-water_calib_file.vi" Type="VI" URL="../RFH-convert-water_calib_file.vi"/>
 		<Item Name="RFH-convert_folder-r140-2.vi" Type="VI" URL="../RFH-convert_folder-r140-2.vi"/>
-		<Item Name="RFH-convert_folder-r140.vi" Type="VI" URL="../RFH-convert_folder-r140.vi"/>
+		<Item Name="RFH-convert_folder-r140.vi" Type="VI" URL="../RFH-convert_folder-r140.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 	</Item>
 	<Item Name="File Verification" Type="Folder">
-		<Item Name="RFH-verify-LibreVNA_conversion.vi" Type="VI" URL="../RFH-verify-LibreVNA_conversion.vi"/>
-		<Item Name="RFH-verify-R140_conversion.vi" Type="VI" URL="../RFH-verify-R140_conversion.vi"/>
-		<Item Name="RFH-verify-water_calib_file.vi" Type="VI" URL="../RFH-verify-water_calib_file.vi"/>
+		<Item Name="RFH-verify-LibreVNA_conversion.vi" Type="VI" URL="../RFH-verify-LibreVNA_conversion.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-verify-R140_conversion.vi" Type="VI" URL="../RFH-verify-R140_conversion.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-verify-water_calib_file.vi" Type="VI" URL="../RFH-verify-water_calib_file.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 	</Item>
 	<Item Name="read" Type="Folder">
 		<Item Name="RFH-read-common_format.vi" Type="VI" URL="../RFH-read-common_format.vi"/>
-		<Item Name="RFH-read-general.vi" Type="VI" URL="../RFH-read-general.vi"/>
+		<Item Name="RFH-read-general.vi" Type="VI" URL="../RFH-read-general.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RFH-read-libreVNA.vi" Type="VI" URL="../RFH-read-libreVNA.vi"/>
 		<Item Name="RFH-read-R140.vi" Type="VI" URL="../RFH-read-R140.vi"/>
 		<Item Name="RFH-read_folder-common_format.vi" Type="VI" URL="../RFH-read_folder-common_format.vi"/>
@@ -51,17 +75,47 @@
 		<Item Name="RFH-R140_data_format.ctl" Type="VI" URL="../RFH-R140_data_format.ctl"/>
 	</Item>
 	<Item Name="utility" Type="Folder">
-		<Item Name="RFH-allign_data.vi" Type="VI" URL="../RFH-allign_data.vi"/>
+		<Item Name="RFH-allign_data.vi" Type="VI" URL="../RFH-allign_data.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="RFH-common_format_to_element_map.vi" Type="VI" URL="../RFH-common_format_to_element_map.vi"/>
-		<Item Name="RFH-fileextension_def.vi" Type="VI" URL="../RFH-fileextension_def.vi"/>
-		<Item Name="RFH-interpolate_data.vi" Type="VI" URL="../RFH-interpolate_data.vi"/>
-		<Item Name="RFH-replace_name.vi" Type="VI" URL="../RFH-replace_name.vi"/>
-		<Item Name="RFH-utility-average_common_format.vi" Type="VI" URL="../RFH-utility-average_common_format.vi"/>
-		<Item Name="RFH-utility-common_selector.vi" Type="VI" URL="../RFH-utility-common_selector.vi"/>
-		<Item Name="RFH-utility-compare_double.vi" Type="VI" URL="../RFH-utility-compare_double.vi"/>
-		<Item Name="RFH-utility-get_all_paths.vi" Type="VI" URL="../RFH-utility-get_all_paths.vi"/>
-		<Item Name="RFH-utility-split_data.vi" Type="VI" URL="../RFH-utility-split_data.vi"/>
-		<Item Name="RFH-utility-split_low_data.vi" Type="VI" URL="../RFH-utility-split_low_data.vi"/>
+		<Item Name="RFH-fileextension_def.vi" Type="VI" URL="../RFH-fileextension_def.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-interpolate_data.vi" Type="VI" URL="../RFH-interpolate_data.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-replace_name.vi" Type="VI" URL="../RFH-replace_name.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-utility-average_common_format.vi" Type="VI" URL="../RFH-utility-average_common_format.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-utility-common_selector.vi" Type="VI" URL="../RFH-utility-common_selector.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-utility-compare_double.vi" Type="VI" URL="../RFH-utility-compare_double.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-utility-get_all_paths.vi" Type="VI" URL="../RFH-utility-get_all_paths.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-utility-split_data.vi" Type="VI" URL="../RFH-utility-split_data.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="RFH-utility-split_low_data.vi" Type="VI" URL="../RFH-utility-split_low_data.vi">
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">2</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 	</Item>
 	<Item Name="Viewers" Type="Folder">
 		<Item Name="RFH-View-simple.vi" Type="VI" URL="../RFH-View-simple.vi"/>
