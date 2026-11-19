@@ -15,6 +15,10 @@
 		<Item Name="RDC-Reflection_Data_Computation.lvlib" Type="Library" URL="../Computation/RDC-Reflection_Data_Computation.lvlib"/>
 		<Item Name="RDV-Reflection_Data_viewer.lvclass" Type="LVClass" URL="../Data Viewer/RDV-Reflection_Data_viewer.lvclass"/>
 		<Item Name="RFH-Reflection_File_Handler.lvlib" Type="Library" URL="../Reflector/RFH-Reflection_File_Handler.lvlib"/>
+		<Item Name="Apps" Type="Folder">
+			<Item Name="RDV-GUI-Compare_Permittivity_calc.vi" Type="VI" URL="../Data Viewer/RDV-GUI-Compare_Permittivity_calc.vi"/>
+			<Item Name="RDV-GUI-SinglePlot.vi" Type="VI" URL="../Data Viewer/RDV-GUI-SinglePlot.vi"/>
+		</Item>
 		<Item Name="Tests" Type="Folder">
 			<Item Name="RDC-compare_dembedd.vi" Type="VI" URL="../Computation/RDC-compare_dembedd.vi"/>
 			<Item Name="RDC-test-Check_Error.vi" Type="VI" URL="../Computation/RDC-test-Check_Error.vi"/>
