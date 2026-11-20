@@ -4,3 +4,9 @@ __pycache__/
 *.lvlps
 *.aliases
 article-data/
+
+# Local planning notes (not part of the project)
+plan/
+
+# Claude Code
+.claude/
