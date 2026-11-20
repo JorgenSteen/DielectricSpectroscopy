@@ -17,6 +17,7 @@
 			<Item Name="RDV-GUI-SinglePlot.vi" Type="VI" URL="../Data Viewer/RDV-GUI-SinglePlot.vi"/>
 		</Item>
 		<Item Name="Tests" Type="Folder">
+			<Item Name="DSS-Tests.lvlib" Type="Library" URL="../Tests/DSS-Tests.lvlib"/>
 			<Item Name="RDC-compare_deembed.vi" Type="VI" URL="../Computation/RDC-compare_deembed.vi"/>
 			<Item Name="RDC-test-Check_Error.vi" Type="VI" URL="../Computation/RDC-test-Check_Error.vi"/>
 			<Item Name="RDC-test-check_perm.vi" Type="VI" URL="../Computation/RDC-test-check_perm.vi"/>

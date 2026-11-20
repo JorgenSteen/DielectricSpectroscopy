@@ -1,0 +1,4 @@
+# Written by every Caraya run
+*-TestReport.xml
+# Capture-mode marker for golden values; never committed
+golden/CAPTURE
