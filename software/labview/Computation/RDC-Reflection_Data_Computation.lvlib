@@ -114,6 +114,9 @@
 			<Item Name="RDC-saltwater-generate_perm_param_to_share.vi" Type="VI" URL="../RDC-saltwater-generate_perm_param_to_share.vi"/>
 			<Item Name="RDC-saltwater-generate_all_perm.vi" Type="VI" URL="../RDC-saltwater-generate_all_perm.vi"/>
 		</Item>
+		<Item Name="common" Type="Folder">
+			<Item Name="RDC-generate_temp_array.vi" Type="VI" URL="../RDC-generate_temp_array.vi"/>
+		</Item>
 		<Item Name="RDC-get_specific_data_points.vi" Type="VI" URL="../RDC-get_specific_data_points.vi"/>
 		<Item Name="RDC-tools-AVG.vim" Type="VI" URL="../RDC-tools-AVG.vim"/>
 		<Item Name="RDC-get_dielectric.vi" Type="VI" URL="../RDC-get_dielectric.vi">
