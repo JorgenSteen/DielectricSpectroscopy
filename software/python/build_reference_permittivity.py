@@ -32,7 +32,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import shutil
 from pathlib import Path
 
 import numpy as np
@@ -139,8 +138,11 @@ def resample(grid: np.ndarray, data: np.ndarray) -> np.ndarray:
 
 
 def build(out: Path) -> tuple[list[dict], list[tuple[int, str]]]:
-    for sub in ("Ideal", "Compare", "Standards"):  # generated folders only: rebuild from scratch
-        shutil.rmtree(out / sub, ignore_errors=True)
+    # never delete or overwrite: the folders may hold hand-made changes (git does not track data/)
+    for sub in ("Ideal", "Compare"):
+        if (out / sub).exists():
+            raise SystemExit(f"{out / sub} already exists: move it away or pass --out to a new folder. "
+                             "This script never deletes or overwrites files.")
     (out / "Ideal").mkdir(parents=True)
     (out / "Compare").mkdir(parents=True)
 
