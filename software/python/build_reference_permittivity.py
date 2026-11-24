@@ -1,33 +1,38 @@
 # =============================================================================
 # build_reference_permittivity.py - builds data/reference-permittivity/ (the
 # input folders of RDV-GUI-Compare_Permittivity_calc.vi) from article-data/:
-# Compare/ = averaged DSS sweeps per liquid, Ideal/ = the R140/DAK reference
-# resampled onto the DSS frequency grid, plus pairs.csv and a README.
+# Ideal/ = numbered calibration standards + R140 references, Compare/ =
+# averaged DSS sweeps, all on the DSS grid, plus the GUI's Association set.
 # =============================================================================
 """Build the reference-permittivity comparison folders from the article data.
 
-Usage (from the repository root, after unzipping article-data.zip):
+Usage (from the repository root, after unzipping article-data.zip and data.zip):
 
     python software/python/build_reference_permittivity.py
 
-Writes:
-    data/reference-permittivity/Compare/P1_<liquid>.s2p   DSS (LibreVNA + probe P1), mean of all sweeps
-    data/reference-permittivity/Ideal/<liquid>.s2p        R140 / DAKS-3.5, mean of the 3 buffers,
-                                                          linearly resampled onto the DSS grid
-    data/reference-permittivity/pairs.csv                 measured -> reference, only where the names differ
-    data/reference-permittivity/README.md                 the naming rule
+Writes data/reference-permittivity/:
+    Ideal/NN-<name>.s2p      the GUI's "reference paths" folder: calibration standards at the
+                             positions the permittivity methods use (00 open, 01 short,
+                             02 water, 06 saline) and the R140 / DAKS-3.5 reference of every
+                             liquid in the other slots (mean of 3 buffers)
+    Compare/P1_<liquid>.s2p  the GUI's "Files for analyses" folder: DSS (LibreVNA + probe P1),
+                             mean of all sweeps
+    association.txt          the GUI's "Association set" ([reference index, set index] pairs)
+    pairs.csv                measured file, reference file, both indices (human-readable)
+    README.md                the naming rule
 
-Both kinds of file use the repository's extended Touchstone columns
-`Frequency S11_Real S11_Imag Perm_Real Perm_Imag Conductivity LossTan R X`.
-The Ideal files carry no probe-P1 reflection, so their S11, R and X columns are 0.
-The error analysis in LabVIEW subtracts point by point, so every file must have the
-same frequency grid: the Ideal files are resampled onto the DSS grid for that reason.
+The current LabVIEW code finds everything by SORTED POSITION, which is why the Ideal files are
+numbered with two digits (the number fixes the position; two digits keep 10+ in order).
+All files use the repository's extended Touchstone columns
+`Frequency S11_Real S11_Imag Perm_Real Perm_Imag Conductivity LossTan R X`, and all are on the
+DSS frequency grid, because the LabVIEW calculations work point by point.
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
+import shutil
 from pathlib import Path
 
 import numpy as np
@@ -40,30 +45,37 @@ DSS_ROOTS = {
     "session3": ART / "DSS_LibreVNA" / "session3_2026-11-01_nocable_cal-20C",
 }
 R140_ROOT = ART / "R140_csv"
+CAL = REPO / "data" / "calibration-standards"
 
-# liquid on the DSS side -> R140 sample name (same name unless listed in PAIRS_OVERRIDE)
+# sample folder name in article-data, per session
 SAMPLES = {
     "session2": ["eth-12", "eth-24", "eth-33", "eth-48-2", "eth-66", "eth-96",
                  "iso-12", "iso-25", "iso-50", "iso-99"],
     "session3": ["adblue", "gaba-01", "gaba-05", "gaba-1", "saline", "saline-1-3"],
 }
-# eth-48-2 is the DSS remeasure of the eth-48 beaker (first DSS run had an air bubble);
-# the R140 measured that beaker once, as eth-48.
-PAIRS_OVERRIDE = {"eth-48-2": "eth-48"}
+# R140 sample measured for a DSS sample when the names differ: eth-48-2 is the DSS remeasure of the
+# eth-48 beaker (the first DSS run had an air bubble); the R140 measured that beaker once, as eth-48.
+R140_NAME = {"eth-48-2": "eth-48"}
+# names used in the output. 'saline' (0.9 % NaCl) is renamed: its keys would otherwise interleave
+# with 'saline-1-3' in the sorted key list (P1_saline-1 < P1_saline-1-3-0 < P1_saline-2), and the
+# GUI groups the four method keys of a set by position.
+OUT_NAME = {"saline": "saline-0p9", "eth-48": "eth-48"}
 
-# calibration standards by ROLE (the LabVIEW methods index them as open 0, short 1, water 2, saline 6);
-# simulated for probe P1 at 20 C, the temperature of the article liquids
-STANDARDS = {
-    "open": REPO / "data" / "calibration-standards" / "sim-P1-open.s2p",
-    "short": REPO / "data" / "calibration-standards" / "sim-P1-short.s2p",
-    "water": REPO / "data" / "calibration-standards" / "sim-P1-DI_water-20c.s2p",
-    "saline": REPO / "data" / "calibration-standards" / "sim-P1-saltwater-20c.s2p",
+# calibration standards and the slot each one must occupy (RDC-permittivity_collection and the
+# method VIs index the reference list: open 0, short 1, water 2, saline 6); simulated for probe P1
+# at 20 C, the temperature of the article liquids
+STANDARD_SLOTS = {
+    0: ("open", CAL / "sim-P1-open.s2p"),
+    1: ("short", CAL / "sim-P1-short.s2p"),
+    2: ("water", CAL / "sim-P1-DI_water-20c.s2p"),
+    6: ("saline", CAL / "sim-P1-saltwater-20c.s2p"),
 }
 
 PROBE = "P1"
 EPS0 = 8.8541878128e-12
 COLUMNS = ("Frequency", "S11_Real", "S11_Imag", "Perm_Real", "Perm_Imag",
            "Conductivity", "Loss Tangent", "Resistance", "Reactance")
+METHOD_SUFFIXES = ("0", "1", "2", "3")  # the GUI loads each Compare file once per method
 
 
 def read_dss(path: Path) -> tuple[list[str], np.ndarray]:
@@ -122,112 +134,153 @@ def write_s2p(path: Path, comments: list[str], data: np.ndarray) -> None:
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def build(out: Path) -> list[tuple[str, str, str]]:
-    (out / "Compare").mkdir(parents=True, exist_ok=True)
-    (out / "Ideal").mkdir(parents=True, exist_ok=True)
-    made = []
-    for session, liquids in SAMPLES.items():
-        for liquid in liquids:
-            comments, dss, n_dss = mean_dss(DSS_ROOTS[session] / liquid)
-            freq = dss[:, 0]
+def resample(grid: np.ndarray, data: np.ndarray) -> np.ndarray:
+    return np.column_stack([grid] + [np.interp(grid, data[:, 0], data[:, c]) for c in range(1, data.shape[1])])
+
+
+def build(out: Path) -> tuple[list[dict], list[tuple[int, str]]]:
+    for sub in ("Ideal", "Compare", "Standards"):  # generated folders only: rebuild from scratch
+        shutil.rmtree(out / sub, ignore_errors=True)
+    (out / "Ideal").mkdir(parents=True)
+    (out / "Compare").mkdir(parents=True)
+
+    pairs, refs, grid = [], {}, None
+    for session, samples in SAMPLES.items():
+        for sample in samples:
+            comments, dss, n_dss = mean_dss(DSS_ROOTS[session] / sample)
+            if grid is None:
+                grid = dss[:, 0]
+            elif not np.array_equal(grid, dss[:, 0]):
+                raise ValueError(f"{sample}: DSS grid differs from the first sample")
+            liquid = OUT_NAME.get(sample, sample)
             measured = f"{PROBE}_{liquid}"
             keep = [c for c in comments if c.startswith(("! Probe", "! Since cal", "! Sweep", "! Method"))]
             write_s2p(out / "Compare" / f"{measured}.s2p",
-                      [f"! Compare file built by build_reference_permittivity.py",
-                       f"! Sample: {liquid}  ({session}, mean of {n_dss} DSS sweeps)", *keep],
+                      ["! Compare file built by build_reference_permittivity.py",
+                       f"! Sample: {sample}  ({session}, mean of {n_dss} DSS sweeps)", *keep],
                       dss)
 
-            ref_name = PAIRS_OVERRIDE.get(liquid, liquid)
-            r140, n_r140 = mean_r140(session, ref_name)
-            if freq[0] < r140[0, 0] or freq[-1] > r140[-1, 0]:
-                raise ValueError(f"{ref_name}: R140 range does not cover the DSS grid")
-            e1 = np.interp(freq, r140[:, 0], r140[:, 1])
-            e2 = np.interp(freq, r140[:, 0], r140[:, 2])
-            sigma = 2 * np.pi * freq * EPS0 * e2
-            tand = e2 / e1
-            zeros = np.zeros_like(freq)
-            ideal = np.column_stack([freq, zeros, zeros, e1, e2, sigma, tand, zeros, zeros])
-            ideal_path = out / "Ideal" / f"{ref_name}.s2p"
-            write_s2p(ideal_path,
-                      [f"! Ideal (reference) file built by build_reference_permittivity.py",
-                       f"! Sample: {ref_name}  ({session}, R140 / DAKS-3.5, mean of {n_r140} buffers)",
-                       "! Resampled linearly onto the DSS frequency grid; S11, R and X are not measured (0)"],
-                      ideal)
-            made.append((measured, ref_name, session))
-    build_standards(out, freq)
-    return made
+            r140_sample = R140_NAME.get(sample, sample)
+            r140, n_r140 = mean_r140(session, r140_sample)
+            if grid[0] < r140[0, 0] or grid[-1] > r140[-1, 0]:
+                raise ValueError(f"{r140_sample}: R140 range does not cover the DSS grid")
+            e1 = np.interp(grid, r140[:, 0], r140[:, 1])
+            e2 = np.interp(grid, r140[:, 0], r140[:, 2])
+            zeros = np.zeros_like(grid)
+            ref_name = OUT_NAME.get(r140_sample, r140_sample)
+            refs[ref_name] = (
+                [f"! Reference built by build_reference_permittivity.py",
+                 f"! Sample: {r140_sample}  ({session}, R140 / DAKS-3.5, mean of {n_r140} buffers)",
+                 "! Resampled linearly onto the DSS grid; S11, R and X are not measured with probe P1 (0)"],
+                np.column_stack([grid, zeros, zeros, e1, e2, 2 * np.pi * grid * EPS0 * e2, e2 / e1, zeros, zeros]))
+            pairs.append({"measured": measured, "reference": ref_name, "session": session})
 
-
-def build_standards(out: Path, grid: np.ndarray) -> None:
-    """Resample the simulated standards onto the DSS grid, one file per role."""
-    (out / "Standards").mkdir(parents=True, exist_ok=True)
-    for role, src in STANDARDS.items():
+    # slots: standards at their fixed positions, the liquids (alphabetical) in the free ones
+    n = len(STANDARD_SLOTS) + len(refs)
+    free = [i for i in range(n) if i not in STANDARD_SLOTS]
+    slots: dict[int, str] = {}
+    for i, (role, src) in STANDARD_SLOTS.items():
         _, d = read_dss(src)
-        cols = [grid] + [np.interp(grid, d[:, 0], d[:, c]) for c in range(1, d.shape[1])]
-        write_s2p(out / "Standards" / f"{role}.s2p",
-                  [f"! Calibration standard '{role}' built by build_reference_permittivity.py",
+        write_s2p(out / "Ideal" / f"{i:02d}-{role}.s2p",
+                  [f"! Calibration standard '{role}' (slot {i}) built by build_reference_permittivity.py",
                    f"! Source: data/calibration-standards/{src.name} (CST simulation, probe P1)",
-                   "! Resampled linearly onto the DSS frequency grid (0.2-6 GHz, 2071 points)"],
-                  np.column_stack(cols))
+                   "! Resampled linearly onto the DSS frequency grid"],
+                  resample(grid, d))
+        slots[i] = role
+    for i, name in zip(free, sorted(refs)):
+        comments, data = refs[name]
+        write_s2p(out / "Ideal" / f"{i:02d}-{name}.s2p", comments, data)
+        slots[i] = name
+
+    # indices exactly as the GUI computes them: references in sorted order of their keys, sets in
+    # sorted order of the Compare keys (each set = its 4 method keys)
+    ref_keys = sorted(f"{i:02d}-{name}-r" for i, name in slots.items())
+    ref_index = {k.rsplit("-", 1)[0].split("-", 1)[1]: j for j, k in enumerate(ref_keys)}
+    compare_keys = sorted(f"{p['measured']}-{m}" for p in pairs for m in METHOD_SUFFIXES)
+    sets = [k.rsplit("-", 1)[0] for k in compare_keys[::len(METHOD_SUFFIXES)]]
+    for start, s in zip(range(0, len(compare_keys), len(METHOD_SUFFIXES)), sets):
+        group = compare_keys[start:start + len(METHOD_SUFFIXES)]
+        if any(k.rsplit("-", 1)[0] != s for k in group):
+            raise ValueError(f"method keys of '{s}' are not contiguous after sorting: {group}")
+    for p in pairs:
+        p["ref_index"] = ref_index[p["reference"]]
+        p["set_index"] = sets.index(p["measured"])
+    return pairs, sorted(slots.items())
 
 
-README = """# reference-permittivity: input of RDV-GUI-Compare_Permittivity_calc.vi
+def write_readme(out: Path, slots: list[tuple[int, str]]) -> None:
+    table = "\n".join(f"| {i:02d} | `{i:02d}-{name}.s2p` | "
+                      f"{'calibration standard (simulated P1, 20 C)' if i in STANDARD_SLOTS else 'R140 reference'} |"
+                      for i, name in slots)
+    (out / "README.md").write_text(f"""# reference-permittivity: input of RDV-GUI-Compare_Permittivity_calc.vi
 
-Built by `software/python/build_reference_permittivity.py` from `article-data/`. Rebuild with that
-script; do not edit the files by hand.
+Built by `software/python/build_reference_permittivity.py` from `article-data/` and
+`data/calibration-standards/`. Rebuild with that script; do not edit the files by hand.
 
 ```
 reference-permittivity/
-├── Standards/   open, short, water, saline .s2p   calibration standards, chosen by NAME (role)
-├── Compare/     <probe>_<liquid>.s2p   measured: DSS (LibreVNA + probe P1), mean of all sweeps
-├── Ideal/       <liquid>.s2p           reference eps*: R140 / DAKS-3.5, mean of 3 buffers
-└── pairs.csv    measured,reference     only for pairs whose liquid names differ
+├── Ideal/            NN-<name>.s2p         GUI control "reference paths"
+├── Compare/          P1_<liquid>.s2p       GUI control "Files for analyses"
+├── association.txt   GUI control "Association set" (paste the line in)
+└── pairs.csv         the same pairs, readable: measured, reference, indices
 ```
 
-Standards are the simulated P1 standards from `data/calibration-standards/` at 20 C. The permittivity
-methods need them in the order open, short, water, ..., saline (positions 0, 1, 2, 6); that order is
-built from the file names, so the files need no number prefixes.
+## Why the numbers
 
-## Naming rule (what pairs a measurement with its reference)
+The GUI sorts every key alphabetically and finds files by POSITION in that list:
+- the first N keys (N = number of Ideal files) are the references; the permittivity methods take the
+  calibration standards from them by fixed position: **open 00, short 01, water 02, saline 06**;
+- the rest are the Compare files, four keys each (one per calculation method);
+- the "Association set" pairs a reference index with a set index.
 
-1. A Compare file is `<probe>_<liquid>.s2p`; the probe is everything before the first `_`.
-2. Its reference is `Ideal/<liquid>.s2p`, matched without regard to upper/lower case.
-3. `pairs.csv` overrides rule 2 (`measured` = Compare file name without `.s2p`, `reference` =
-   Ideal file name without `.s2p`).
-4. A Compare file with no reference is reported as unpaired, never matched by position.
+So the Ideal files carry a two-digit number (two digits keep 10+ files in order), the standards sit in
+their fixed slots, and every Compare file name must sort after the numbers (it starts with a letter).
 
-No number prefixes are needed and the order of the files does not matter.
+| Slot | File | What |
+|---|---|---|
+{table}
+
+## Rules when adding files
+
+1. Ideal: next free two-digit number, `NN-<name>.s2p`; never move 00, 01, 02, 06.
+2. Compare: `<probe>_<liquid>.s2p`, starting with a letter. No liquid name may be another liquid name
+   followed by `-<digit>` (for example `saline` and `saline-1-3`): their method keys would interleave.
+3. Rerun the script (or recount by hand) and paste the new `association.txt` into the GUI.
 
 ## Grids and columns
 
-Every file has the DSS grid (0.2-6 GHz, 2071 points): the error analysis subtracts point by point.
+Every file has the DSS grid (0.2-6 GHz, 2071 points): the LabVIEW calculations work point by point.
 Columns: `Frequency S11_Real S11_Imag Perm_Real Perm_Imag Conductivity LossTan R X`,
-`eps* = eps' - j*eps''` with `eps''` positive. Ideal files have S11, R and X = 0 (not measured
+`eps* = eps' - j*eps''` with `eps''` positive. R140 references have S11, R and X = 0 (not measured
 with probe P1).
 
 ## Sources
 
-Day 1 (2026-10-31, `session2`): drift-corrected DSS sweeps. Day 2 (2026-11-01, `session3`): DSS sweeps
-as recorded. `eth-48-2` is the DSS remeasure of the `eth-48` beaker (see `pairs.csv`). `saline` is the
-0.9 % NaCl calibration standard and is included as an extra check. See `article-data/README.md`.
-"""
+Day 1 (2026-10-31): drift-corrected DSS sweeps; day 2 (2026-11-01): DSS sweeps as recorded.
+`P1_eth-48-2` is the DSS remeasure of the `eth-48` beaker. `saline-0p9` is the 0.9 % NaCl liquid
+(article folder `saline`), renamed so it cannot interleave with `saline-1-3`. See `article-data/README.md`.
+""", encoding="utf-8")
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out", type=Path, default=REPO / "data" / "reference-permittivity")
     args = ap.parse_args()
-    made = build(args.out)
+    pairs, slots = build(args.out)
+    pairs.sort(key=lambda p: p["set_index"])
     with (args.out / "pairs.csv").open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["measured", "reference"])
-        for measured, ref, _ in made:
-            if measured.split("_", 1)[1].lower() != ref.lower():
-                w.writerow([measured, ref])
-    (args.out / "README.md").write_text(README, encoding="utf-8")
-    for measured, ref, session in made:
-        print(f"{session}  Compare/{measured}.s2p  <->  Ideal/{ref}.s2p")
-    print(f"{len(made)} pairs -> {args.out}")
+        w.writerow(["measured", "reference", "reference_index", "set_index", "session"])
+        for p in pairs:
+            w.writerow([p["measured"], p["reference"], p["ref_index"], p["set_index"], p["session"]])
+    assoc = "[" + ",".join(f"[{p['ref_index']},{p['set_index']}]" for p in pairs) + "]"
+    (args.out / "association.txt").write_text(assoc + "\n", encoding="utf-8")
+    write_readme(args.out, slots)
+    for i, name in slots:
+        print(f"Ideal/{i:02d}-{name}.s2p")
+    for p in pairs:
+        print(f"set {p['set_index']:2d}  Compare/{p['measured']}.s2p  <->  reference {p['ref_index']:2d} ({p['reference']})")
+    print("Association set:", assoc)
 
 
 if __name__ == "__main__":
