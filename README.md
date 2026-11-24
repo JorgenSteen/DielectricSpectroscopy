@@ -11,8 +11,8 @@ measurements, 100 MHz – 6 GHz.
   - `3D files/` — printable parts for the measurement stand and probe holder (.3mf, .step)
 - `software/`
   - `python/` — minimal NumPy-only reference implementation: reader for the custom
-    `.s2p` format and S11 → permittivity conversion via the Bilinear method
-    (see its own README)
+    `.s2p` format and S11 → permittivity conversion via the Bilinear method, plus the
+    builder of `data/reference-permittivity/` (see its own README)
   - `labview/` — the full LabVIEW measurement/processing pipeline
 - `data.zip` — all measurement data, zipped
 - `data/` — the unzipped data (this folder itself is not tracked in git, see below)
@@ -27,17 +27,28 @@ creates the `data/` folder:
 data/
 ├── calibration-standards/        simulated standards: open, short, DI water and
 │                                 saltwater at 10–40 °C  (sim-P1-*.s2p)
-└── measurements/
-    ├── 10c/                      measurements at 10 °C
-    │   ├── aff/                  affected probe   (aff_10c_<sample>.s2p)
-    │   └── ref/                  reference probe  (ref_10c_<sample>.s2p)
-    ├── 22p5c/                    measurements at 22.5 °C
-    │   ├── aff/
-    │   └── ref/
-    └── 35c/                      measurements at 35 °C
-        ├── aff/
-        └── ref/
+├── measurements/
+│   ├── 10c/                      measurements at 10 °C
+│   │   ├── aff/                  affected probe   (aff_10c_<sample>.s2p)
+│   │   └── ref/                  reference probe  (ref_10c_<sample>.s2p)
+│   ├── 22p5c/                    measurements at 22.5 °C
+│   │   ├── aff/
+│   │   └── ref/
+│   └── 35c/                      measurements at 35 °C
+│       ├── aff/
+│       └── ref/
+└── reference-permittivity/       input of the LabVIEW compare GUI (RDV-GUI-Compare_Permittivity_calc)
+    ├── Ideal/                    NN-<name>.s2p: P1 standards in slots 00 open, 01 short, 02 water,
+    │                             06 saline + the R140 reference of every article liquid
+    ├── Compare/                  P1_<liquid>.s2p, the DSS measurement (Ethanol/, Isopropanol/, Other/)
+    ├── association.txt           the GUI's "Association set" for these files
+    └── pairs.csv                 the same pairs with names; README.md has the numbering rules
 ```
+
+`reference-permittivity/` is built from `article-data/` and `data/calibration-standards/` by
+`software/python/build_reference_permittivity.py`; all its files are on the DSS frequency grid
+(0.2–6 GHz, 2071 points). The GUI finds files by sorted position, which is why the Ideal files are
+numbered: see `data/reference-permittivity/README.md` before adding files.
 
 Samples include water, saltwater, ethanol, isopropanol, AdBlue and GABA solutions,
 plus open/short/water checks taken at the start, middle and end of each session.
@@ -82,4 +93,13 @@ The DSS files use the `.s2p` format above. The simulated open, short, water and 
 standards at 20 °C are the ones in `data.zip` (`data/calibration-standards/`).
 
 ## Starting Point
-Opening the vi called RDV-GUI-SinglePlot would be a good point inside relfection data viewer class, GUI and Testers
+
+The LabVIEW code is saved for **LabVIEW 2020 (32-bit)**, Windows only. Open
+`software/labview/DSS.lvproj` first; a VI opened and saved on its own in a newer LabVIEW can no
+longer be opened in 2020. The GUIs are in the project folder `Apps`:
+
+- `RDV-GUI-SinglePlot.vi` — the data viewer, a good place to start.
+- `RDV-GUI-Compare_Permittivity_calc.vi` — compares the four permittivity methods against
+  reference data; point it at `data/reference-permittivity/Ideal` and `.../Compare`.
+
+The golden-value test suite is `software/labview/Tests/DSS-Tests-run_all.vi` (JKI Caraya).

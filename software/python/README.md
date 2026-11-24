@@ -42,6 +42,27 @@ eps, cond = convert_s11_to_permittivity(
 
 Only dependency is NumPy.
 
+## Building `data/reference-permittivity/`
+
+`build_reference_permittivity.py` builds the input folders of the LabVIEW compare GUI
+(`RDV-GUI-Compare_Permittivity_calc.vi`) from `article-data/` and `data/calibration-standards/`
+(unzip both archives first):
+
+```bash
+python software/python/build_reference_permittivity.py              # -> data/reference-permittivity
+python software/python/build_reference_permittivity.py --out <dir>  # somewhere else
+```
+
+- `Compare/P1_<liquid>.s2p`: the mean of all DSS sweeps of each article liquid (day 1 drift-corrected).
+- `Ideal/NN-<name>.s2p`: the simulated P1 standards at 20 °C in the slots the LabVIEW methods read
+  by position (00 open, 01 short, 02 water, 06 saline), and the R140 reference (mean of 3 buffers)
+  of every liquid in the other slots.
+- `association.txt` / `pairs.csv`: the GUI's "Association set" and the same pairs with names.
+
+Everything is resampled onto the DSS grid (0.2–6 GHz, 2071 points), because the LabVIEW
+calculations work point by point. The script never deletes or overwrites: it stops if `Ideal/` or
+`Compare/` already exists, so hand-made changes in the git-ignored `data/` folder are safe.
+
 ## Note on calibration standards
 
 The stored `Perm` columns of the open and short standard files are placeholders
